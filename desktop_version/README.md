@@ -31,6 +31,13 @@ cd flibitBuild
 cmake ..
 ```
 
+To generate for RG350:
+```
+mkdir flibitBuild
+cd flibitBuild
+CC=mipsel-gcw0-linux-uclibc-gcc CXX=mipsel-gcw0-linux-uclibc-g++ cmake .. -DSDL2_INCLUDE_DIRS=/opt/gcw0-toolchain/usr/mipsel-gcw0-linux-uclibc/sysroot/usr/include/SDL2/ -DSDL2_LIBRARIES="/opt/gcw0-toolchain/usr/mipsel-gcw0-linux-uclibc/sysroot/usr/lib/libSDL2.so;/opt/gcw0-toolchain/usr/mipsel-gcw0-linux-uclibc/sysroot/usr/lib/libSDL2_mixer.so"
+```
+
 macOS may be fussy about the SDK version. How to fix this is up to the whims of
 however Apple wants to make CMAKE_OSX_SYSROOT annoying to configure and retain
 each time Xcode updates.
