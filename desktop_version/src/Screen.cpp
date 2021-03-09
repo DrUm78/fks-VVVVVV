@@ -29,7 +29,7 @@ Screen::Screen()
     filterSubrect.w = 318;
     filterSubrect.h = 238;
 
-    hw_screen = SDL_SetVideoMode(320, 240, 32, SDL_DOUBLEBUF | SDL_HWSURFACE);
+    hw_screen = SDL_SetVideoMode(240, 240, 32, SDL_DOUBLEBUF | SDL_HWSURFACE);
 
 	  m_screen = SDL_CreateRGBSurface(
 		  0,
@@ -95,7 +95,7 @@ const SDL_PixelFormat* Screen::GetFormat()
 }
 
 void Screen::FlipScreen()
-{  
+{
   BlitSurfaceStandard(m_screen, NULL, hw_screen, NULL);
   SDL_Flip(hw_screen);
 }

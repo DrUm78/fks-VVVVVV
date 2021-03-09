@@ -41,6 +41,7 @@ int main(int argc, char *argv[])
 {
     FILESYSTEM_init(argv[0]);
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
+    SDL_ShowCursor(0);
 
     NETWORK_init();
 

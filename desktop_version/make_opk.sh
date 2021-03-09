@@ -18,10 +18,9 @@ Categories=games;
 EOF
 
 # create opk
-FLIST="flibitBuild/vvvvvv.x86"
+FLIST="build/vvvvvv.x86"
 FLIST="${FLIST} default.gcw0.desktop"
 FLIST="${FLIST} vvvvvv.png"
-FLIST="${FLIST} data.zip"
 
 rm -f ${OPK_NAME}
 mksquashfs ${FLIST} ${OPK_NAME} -all-root -no-xattrs -noappend -no-exports

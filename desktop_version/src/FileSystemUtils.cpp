@@ -78,14 +78,8 @@ void FILESYSTEM_init(char *argvZero)
 #endif
 	if (!PHYSFS_mount(output, NULL, 1))
 	{
-		SDL_ShowSimpleMessageBox(
-			SDL_MESSAGEBOX_ERROR,
-			"data.zip missing!",
-			"You do not have data.zip!"
-			"\n\nGrab it from your purchased copy of the game,"
-			"\nor get it from the free Make and Play Edition.",
-			NULL
-		);
+    printf("data.zip missing!\n");
+    abort();
 	}
 }
 
