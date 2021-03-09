@@ -1,4 +1,6 @@
-This is the source code to VVVVVV, version 2.0+. For more context about this release, see the [announcement](http://distractionware.com/blog/2020/01/vvvvvv-is-now-open-source/) on Terry's blog!
+Info
+----
+This is the FunKey-S port of VVVVVV. SDL has been downgraded to SDL1.2 so this version could be used to port the game to other platform which doesn't support SDL2.0.
 
 License
 -------
@@ -16,7 +18,3 @@ Authors
 - 2.2 Update (SDL2/PhysicsFS/Steamworks port) by [Ethan Lee](http://www.flibitijibibo.com/)
 - Beta Testing by Sam Kaplan and Pauli Kohberger
 - Ending Picture by Pauli Kohberger
-
-Versions
-------------
-There are two versions of the VVVVVV source code available - the [desktop version](https://github.com/TerryCavanagh/VVVVVV/tree/master/desktop_version) (based on the C++ port, and currently live on Steam), and the [mobile version](https://github.com/TerryCavanagh/VVVVVV/tree/master/mobile_version) (based on a fork of the original flash source code, and currently live on iOS and Android).

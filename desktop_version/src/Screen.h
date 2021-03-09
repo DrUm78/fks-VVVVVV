@@ -13,6 +13,8 @@ class Screen
 {
 private:
   void scale_NN_AllowOutOfScreen(SDL_Surface *src_surface, SDL_Surface *dst_surface, int new_w, int new_h);
+  void downscale_320x240_to_240x240_bilinearish(SDL_Surface *src_surface, SDL_Surface *dst_surface);
+  void downscale_320x240_to_240x180_bilinearish(SDL_Surface *src_surface, SDL_Surface *dst_surface);
 
   int x = -1, y = -1;
   ScaleMode mode;

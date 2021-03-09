@@ -233,6 +233,8 @@ int main(int argc, char *argv[])
     game.infocus = true;
     key.isActive = true;
 
+    int playerPositionNotFoundCounter = 0;
+
     while(!key.quitProgram)
     {
 		//gameScreen.ClearScreen(0x00);
@@ -247,13 +249,20 @@ int main(int argc, char *argv[])
             if (entity.rule == 0 && entity.active)
             {
               gameScreen.setPlayerPosition(entity.oldxp, entity.oldyp);
+              playerPositionNotFoundCounter = 0;
               found = true;
               break;
             }
           }
 
           if (!found)
-            gameScreen.setPlayerPosition(-1, -1);
+          {
+            ++playerPositionNotFoundCounter;
+            
+            if (playerPositionNotFoundCounter > 5)
+              gameScreen.setPlayerPosition(-1, -1);
+          }
+            
         }
 
         // Update network per frame.
