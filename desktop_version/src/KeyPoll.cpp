@@ -1,7 +1,10 @@
 #include "KeyPoll.h"
 #include <stdio.h>
 #include <string.h>
+
 #include "UtilityClass.h"
+#include "Screen.h"
+
 
 void KeyPoll::setSensitivity(int _value)
 {
@@ -26,7 +29,7 @@ void KeyPoll::setSensitivity(int _value)
 
 }
 
-KeyPoll::KeyPoll()
+KeyPoll::KeyPoll(Screen* screen) : screen(screen)
 {
 	xVel = 0;
 	yVel = 0;
@@ -82,7 +85,12 @@ void KeyPoll::Poll()
 		}
 		else if (evt.type == SDL_KEYUP)
 		{
-			keymap[evt.key.keysym.sym] = false;
+      if (evt.key.keysym.sym == SDLK_h)
+      {
+        screen->nextScaleMode();
+      }
+      
+      keymap[evt.key.keysym.sym] = false;
 			if (evt.key.keysym.sym == SDLK_BACKSPACE)
 			{
 				pressedbackspace = false;

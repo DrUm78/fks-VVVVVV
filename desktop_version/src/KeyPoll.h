@@ -7,6 +7,8 @@
 
 #include "SDL.h"
 
+class Screen;
+
 enum
 {
 	KEYBOARD_UP = SDLK_u,
@@ -16,10 +18,10 @@ enum
 	KEYBOARD_ENTER = SDLK_s,
 	KEYBOARD_SPACE = SDLK_a,
 
-	KEYBOARD_w = SDLK_1,
-	KEYBOARD_s = SDLK_2,
-	KEYBOARD_a = SDLK_3,
-	KEYBOARD_d = SDLK_4,
+	KEYBOARD_w = SDLK_UP,
+	KEYBOARD_s = SDLK_DOWN,
+	KEYBOARD_a = SDLK_LEFT,
+	KEYBOARD_d = SDLK_RIGHT,
 	KEYBOARD_m = SDLK_5,
 
 	KEYBOARD_v = SDLK_m,
@@ -30,7 +32,12 @@ enum
 
 class KeyPoll
 {
+private:
+  Screen* screen;
+
 public:
+  KeyPoll(Screen* screen);
+
 	std::map<SDLKey, bool> keymap;
 
 	bool isActive;
@@ -44,8 +51,6 @@ public:
 	int sensitivity;
 
 	void setSensitivity(int _value);
-
-	KeyPoll();
 
 	void enabletextentry();
 

@@ -3,8 +3,19 @@
 
 #include <SDL.h>
 
+enum class ScaleMode
+{
+  CROPPED, ASPECT, STRETCHED
+};
+
+
 class Screen
 {
+private:
+  void scale_NN_AllowOutOfScreen(SDL_Surface *src_surface, SDL_Surface *dst_surface, int new_w, int new_h);
+
+  ScaleMode mode;
+
 public:
 	Screen();
 
@@ -20,6 +31,8 @@ public:
 	void toggleFullScreen();
 	void toggleStretchMode();
 	void toggleLinearFilter();
+
+  void nextScaleMode();
 
 	bool isWindowed;
 	bool isFiltered;

@@ -147,7 +147,7 @@ int main(int argc, char *argv[])
     game.menustart = false;
     game.mainmenu = 0;
 
-    KeyPoll key;
+    KeyPoll key(&gameScreen);
     mapclass map;
 
     map.ypos = (700-29) * 8;
@@ -350,15 +350,7 @@ int main(int argc, char *argv[])
             case GAMEMODE:
                 if (map.towermode)
                 {
-					gameinput(key, graphics, game, map, obj, help, music);
-
-                    //if(game.recording==1)
-                    //{
-                    // ///recordinput(key, graphics, game, map, obj, help, music);
-                    //}
-                    //else
-                    //{
-                    //}
+					          gameinput(key, graphics, game, map, obj, help, music);
                     towerrender(graphics, game, map, obj, help);
                     towerlogic(graphics, game,  obj,  music, map, help);
 
