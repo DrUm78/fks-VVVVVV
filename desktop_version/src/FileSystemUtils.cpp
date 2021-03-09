@@ -74,11 +74,12 @@ void FILESYSTEM_init(char *argvZero)
 	strcpy(output, PHYSFS_getBaseDir());
 	strcat(output, "data.zip");
 #else
-	strcpy(output, "data.zip");
+  PLATFORM_getOSDirectory(output);
+	strcat(output, "data.zip");
 #endif
 	if (!PHYSFS_mount(output, NULL, 1))
 	{
-    printf("data.zip missing!\n");
+    printf("data.zip is missing! Place it in %s\n", output);
     abort();
 	}
 }
