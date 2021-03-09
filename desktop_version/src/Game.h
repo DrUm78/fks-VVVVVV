@@ -348,12 +348,6 @@ public:
     int customlevelscore[200];//0 - not played, 1 - finished, 2 - all trinkets, 3 - finished, all trinkets
     int numcustomlevelstats;
     bool customlevelstatsloaded;
-
-
-	std::vector<SDL_GameControllerButton> controllerButton_map;
-	std::vector<SDL_GameControllerButton> controllerButton_flip;
-	std::vector<SDL_GameControllerButton> controllerButton_esc;
-
 };
 
 #endif /* GAME_H */

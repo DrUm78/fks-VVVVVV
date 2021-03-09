@@ -7,107 +7,6 @@
 // Found in titlerender.cpp
 void updategraphicsmode(Game& game, Graphics& dwgfx);
 
-void updatebuttonmappings(Game& game, KeyPoll& key, musicclass& music, int bind)
-{
-	for (
-		SDL_GameControllerButton i = SDL_CONTROLLER_BUTTON_A;
-		i < SDL_CONTROLLER_BUTTON_DPAD_UP;
-		i = (SDL_GameControllerButton) (i + 1)
-	) {
-		if (key.isDown(i))
-		{
-			bool dupe = false;
-			if (bind == 1)
-			{
-				for (size_t j = 0; j < game.controllerButton_flip.size(); j += 1)
-				{
-					if (i == game.controllerButton_flip[j])
-					{
-						dupe = true;
-					}
-				}
-				if (!dupe)
-				{
-					game.controllerButton_flip.push_back(i);
-					music.playef(11, 10);
-				}
-				for (size_t j = 0; j < game.controllerButton_map.size(); j += 1)
-				{
-					if (i == game.controllerButton_map[j])
-					{
-						game.controllerButton_map.erase(game.controllerButton_map.begin() + j);
-					}
-				}
-				for (size_t j = 0; j < game.controllerButton_esc.size(); j += 1)
-				{
-					if (i == game.controllerButton_esc[j])
-					{
-						game.controllerButton_esc.erase(game.controllerButton_esc.begin() + j);
-					}
-				}
-			}
-			if (bind == 2)
-			{
-				for (size_t j = 0; j < game.controllerButton_map.size(); j += 1)
-				{
-					if (i == game.controllerButton_map[j])
-					{
-						dupe = true;
-					}
-				}
-				if (!dupe)
-				{
-					game.controllerButton_map.push_back(i);
-					music.playef(11, 10);
-				}
-				for (size_t j = 0; j < game.controllerButton_flip.size(); j += 1)
-				{
-					if (i == game.controllerButton_flip[j])
-					{
-						game.controllerButton_flip.erase(game.controllerButton_flip.begin() + j);
-					}
-				}
-				for (size_t j = 0; j < game.controllerButton_esc.size(); j += 1)
-				{
-					if (i == game.controllerButton_esc[j])
-					{
-						game.controllerButton_esc.erase(game.controllerButton_esc.begin() + j);
-					}
-				}
-			}
-			if (bind == 3)
-			{
-				for (size_t j = 0; j < game.controllerButton_esc.size(); j += 1)
-				{
-					if (i == game.controllerButton_esc[j])
-					{
-						dupe = true;
-					}
-				}
-				if (!dupe)
-				{
-					game.controllerButton_esc.push_back(i);
-					music.playef(11, 10);
-				}
-				for (size_t j = 0; j < game.controllerButton_flip.size(); j += 1)
-				{
-					if (i == game.controllerButton_flip[j])
-					{
-						game.controllerButton_flip.erase(game.controllerButton_flip.begin() + j);
-					}
-				}
-				for (size_t j = 0; j < game.controllerButton_map.size(); j += 1)
-				{
-					if (i == game.controllerButton_map[j])
-					{
-						game.controllerButton_map.erase(game.controllerButton_map.begin() + j);
-					}
-				}
-			}
-		}
-	}
-}
-
 void titleinput(KeyPoll& key, Graphics& dwgfx, mapclass& map, Game& game, entityclass& obj, UtilityClass& help, musicclass& music)
 {
     //game.mx = (mouseX / 4);
@@ -1646,13 +1545,6 @@ SDL_assert(0 && "Remove open level dir");
                 }
             }
         }
-        if (    game.currentmenuname == "controller" &&
-                game.currentmenuoption > 0 &&
-                game.currentmenuoption < 4 )
-        {
-            updatebuttonmappings(game, key, music, game.currentmenuoption);
-        }
-
     }
 
     if (dwgfx.fademode == 1)
