@@ -3,6 +3,7 @@
 
 
 
+
 void setRect( SDL_Rect& _r, int x, int y, int w, int h )
 {
     _r.x = x;
@@ -53,12 +54,19 @@ SDL_Surface* GetSubSurface( SDL_Surface* metaSurface, int x, int y, int width, i
 
     //Convert to the correct display format after nabbing the new _surface or we will slow things down.
     SDL_Surface* preSurface = SDL_CreateRGBSurface(SDL_SWSURFACE, width, height, 32, r, g, b, a);
-    //SDL_Surface* subSurface = SDL_DisplayFormatAlpha(preSurface);
 
-    //SDL_FreeSurface(preSurface);
+    //SDL_BlitSurface(metaSurface, &area, preSurface, 0);
 
-    // Lastly, apply the area from the meta _surface onto the whole of the sub _surface.
-    SDL_BlitSurface(metaSurface, &area, preSurface, 0);
+    for (int i = 0; i < height; ++i)
+    {
+      for (int j = 0; j < width; ++j)
+      {
+        uint8_t r, g, b, a;
+        SDL_GetRGBA(((uint32_t*)metaSurface->pixels)[(y + i)* metaSurface->w + x + j], metaSurface->format, &r, &g, &b, &a);
+        
+        ((uint32_t*)preSurface->pixels)[(i)* preSurface->w + j] = (a << 24) | (b << 16) | (g << 8) | r;
+      }
+    }
 
     // Return the new Bitmap _surface
     return preSurface;
@@ -247,7 +255,7 @@ SDL_Surface *  FlipSurfaceVerticle(SDL_Surface* _src)
 	return ret;
 }
 
-void BlitSurfaceStandard( SDL_Surface* _src, SDL_Rect* _srcRect, SDL_Surface* _dest, SDL_Rect* _destRect )
+int BlitSurfaceStandard( SDL_Surface* _src, SDL_Rect* _srcRect, SDL_Surface* _dest, SDL_Rect* _destRect )
 {
     //SDL_Rect tempRect = *_destRect;
     //tempRect.w  ;
@@ -266,7 +274,7 @@ void BlitSurfaceStandard( SDL_Surface* _src, SDL_Rect* _srcRect, SDL_Surface* _d
     //}
     //else
     //{
-    SDL_BlitSurface( _src, _srcRect, _dest, _destRect );
+    return SDL_BlitSurface( _src, _srcRect, _dest, _destRect );
     //}
 }
 
@@ -293,19 +301,23 @@ void BlitSurfaceColoured(
         fmt.Amask
     );
 
-    for(int x = 0; x < tempsurface->w; x++)
+    for (int x = 0; x < tempsurface->w; x++)
     {
-        for(int y = 0; y < tempsurface->h; y++)
-        {
-            Uint32 pixel = ReadPixel(_src, x, y);
-            Uint32 Alpha = pixel & fmt.Amask;
-            Uint32 result = ct.colour & 0x00FFFFFF;
-            DrawPixel(tempsurface, x, y, result | Alpha);
-        }
+      for (int y = 0; y < tempsurface->h; y++)
+      {
+        Uint32 pixel = ReadPixel(_src, x, y);
+        Uint32 Alpha = pixel & fmt.Amask;
+        Uint32 result = ct.colour & 0x00FFFFFF;
+        DrawPixel(tempsurface, x, y, result | Alpha);
+      }
     }
 
-    SDL_BlitSurface(tempsurface, _srcRect, _dest, tempRect);
+    SDL_Surface* converted = SDL_DisplayFormatAlpha(tempsurface);
+    SDL_SetAlpha(converted, SDL_SRCALPHA, 0);
+
+    SDL_BlitSurface(converted, _srcRect, _dest, tempRect);
     SDL_FreeSurface(tempsurface);
+    SDL_FreeSurface(converted);
 }
 
 
@@ -460,8 +472,6 @@ void ScrollSurface( SDL_Surface* _src, int _pX, int _pY )
 
         SDL_Rect destrect1;
 
-        SDL_SetSurfaceBlendMode(part1, SDL_BLENDMODE_NONE);
-
         setRect(destrect1, 0,  _pY, _pX, _src->h);
 
         SDL_BlitSurface (part1, NULL, _src, &destrect1);
@@ -475,8 +485,6 @@ void ScrollSurface( SDL_Surface* _src, int _pX, int _pY )
         part1 = GetSubSurface(_src, rect1.x, rect1.y, rect1.w, rect1.h);
 
         SDL_Rect destrect1;
-
-        SDL_SetSurfaceBlendMode(part1, SDL_BLENDMODE_NONE);
 
         setRect(destrect1, _pX, _pY, _src->w, _src->h - _pY);
 
@@ -493,8 +501,6 @@ void ScrollSurface( SDL_Surface* _src, int _pX, int _pY )
 
 		SDL_Rect destrect1;
 
-		SDL_SetSurfaceBlendMode(part1, SDL_BLENDMODE_NONE);
-
 		setRect(destrect1, _pX,  0, _src->w - _pX, _src->h);
 
 		SDL_BlitSurface (part1, NULL, _src, &destrect1);
@@ -508,8 +514,6 @@ void ScrollSurface( SDL_Surface* _src, int _pX, int _pY )
 		part1 = GetSubSurface(_src, rect1.x, rect1.y, rect1.w, rect1.h);
 
 		SDL_Rect destrect1;
-
-		SDL_SetSurfaceBlendMode(part1, SDL_BLENDMODE_NONE);
 
 		setRect(destrect1, 0, 0, _src->w - _pX, _src->h);
 

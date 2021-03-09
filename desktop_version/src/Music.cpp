@@ -62,7 +62,6 @@ musicclass::musicclass()
 		mmmmmm = false;
 		usingmmmmmm=false;
 		bool ohCrap = musicReadBlob.unPackBinary("vvvvvvmusic.vvv");
-		SDL_assert(ohCrap && "Music not found!");
 	}
 	else
 	{
@@ -133,7 +132,6 @@ musicclass::musicclass()
 		musicTracks.push_back(MusicTrack( rw ));
 
 		bool ohCrap = musicReadBlob.unPackBinary("vvvvvvmusic.vvv");
-		SDL_assert(ohCrap && "Music not found!");
 	}
 
 	int index = musicReadBlob.getIndex("data/music/0levelcomplete.ogg");

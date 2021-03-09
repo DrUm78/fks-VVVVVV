@@ -29,6 +29,9 @@
 #include <stdio.h>
 #include <string.h>
 
+
+extern "C" { FILE __iob_func[3] = { *stdin,*stdout,*stderr }; }
+
 scriptclass script;
  edentities edentity[3000];
 
@@ -37,17 +40,7 @@ scriptclass script;
 int main(int argc, char *argv[])
 {
     FILESYSTEM_init(argv[0]);
-    SDL_Init(
-        SDL_INIT_VIDEO |
-        SDL_INIT_AUDIO |
-        SDL_INIT_JOYSTICK |
-        SDL_INIT_GAMECONTROLLER
-    );
-
-    if (argc > 2 && strcmp(argv[1], "-renderer") == 0)
-    {
-        SDL_SetHintWithPriority(SDL_HINT_RENDER_DRIVER, argv[2], SDL_HINT_OVERRIDE);
-    }
+    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
 
     NETWORK_init();
 
@@ -120,24 +113,25 @@ int main(int argc, char *argv[])
     graphics.images.push_back(graphics.grphx.im_image12);
 
     const SDL_PixelFormat* fmt = gameScreen.GetFormat();
-    graphics.backBuffer = SDL_CreateRGBSurface(SDL_SWSURFACE ,320 ,240 ,32,fmt->Rmask,fmt->Gmask,fmt->Bmask,fmt->Amask ) ;
-    SDL_SetSurfaceBlendMode(graphics.backBuffer, SDL_BLENDMODE_NONE);
+    graphics.backBuffer = SDL_CreateRGBSurface(SDL_SWSURFACE ,320 ,240 ,32,fmt->Rmask,fmt->Gmask,fmt->Bmask,fmt->Amask );
+    //SDL_SetAlpha(graphics.backBuffer, 0, 0);
     graphics.Makebfont();
 
 
     graphics.forgroundBuffer =  SDL_CreateRGBSurface(SDL_SWSURFACE ,320 ,240 ,fmt->BitsPerPixel,fmt->Rmask,fmt->Gmask,fmt->Bmask,fmt->Amask  );
-    SDL_SetSurfaceBlendMode(graphics.forgroundBuffer, SDL_BLENDMODE_NONE);
+    //SDL_SetAlpha(graphics.forgroundBuffer, 0, 0);
 
     graphics.screenbuffer = &gameScreen;
 
     graphics.menubuffer = SDL_CreateRGBSurface(SDL_SWSURFACE ,320 ,240 ,fmt->BitsPerPixel,fmt->Rmask,fmt->Gmask,fmt->Bmask,fmt->Amask );
-    SDL_SetSurfaceBlendMode(graphics.menubuffer, SDL_BLENDMODE_NONE);
+    //SDL_SetAlpha(graphics.menubuffer, 0, 0);
 
     graphics.towerbuffer =  SDL_CreateRGBSurface(SDL_SWSURFACE ,320 ,240 ,fmt->BitsPerPixel,fmt->Rmask,fmt->Gmask,fmt->Bmask,fmt->Amask  );
-    SDL_SetSurfaceBlendMode(graphics.towerbuffer, SDL_BLENDMODE_NONE);
+    //SDL_SetAlpha(graphics.towerbuffer, 0, 0);
 
-	graphics.tempBuffer = SDL_CreateRGBSurface(SDL_SWSURFACE ,320 ,240 ,fmt->BitsPerPixel,fmt->Rmask,fmt->Gmask,fmt->Bmask,fmt->Amask  );
-    SDL_SetSurfaceBlendMode(graphics.tempBuffer, SDL_BLENDMODE_NONE);
+  	graphics.tempBuffer = SDL_CreateRGBSurface(SDL_SWSURFACE ,320 ,240 ,fmt->BitsPerPixel,fmt->Rmask,fmt->Gmask,fmt->Bmask,fmt->Amask  );
+    //SDL_SetAlpha(graphics.tempBuffer, 0, 0);
+
 
     //Make a temporary rectangle to hold the offsets
     // SDL_Rect offset;

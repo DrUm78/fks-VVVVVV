@@ -174,6 +174,7 @@ void __PHYSFS_smallFree(void *ptr);
 #ifndef PHYSFS_SUPPORTS_ZIP
 #define PHYSFS_SUPPORTS_ZIP PHYSFS_SUPPORTS_DEFAULT
 #endif
+/*
 #ifndef PHYSFS_SUPPORTS_7Z
 #define PHYSFS_SUPPORTS_7Z PHYSFS_SUPPORTS_DEFAULT
 #endif
@@ -201,6 +202,7 @@ void __PHYSFS_smallFree(void *ptr);
 #ifndef PHYSFS_SUPPORTS_VDF
 #define PHYSFS_SUPPORTS_VDF PHYSFS_SUPPORTS_DEFAULT
 #endif
+*/
 
 #if PHYSFS_SUPPORTS_7Z
 /* 7zip support needs a global init function called at startup (no deinit). */

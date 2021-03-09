@@ -29,7 +29,6 @@ void updategraphicsmode(Game& game, Graphics& dwgfx)
 
 void titlerender(Graphics& dwgfx, mapclass& map, Game& game, entityclass& obj, UtilityClass& help, musicclass& music)
 {
-
     FillRect(dwgfx.backBuffer, 0,0,dwgfx.backBuffer->w, dwgfx.backBuffer->h, 0x00000000 );
 
     if (!game.menustart)

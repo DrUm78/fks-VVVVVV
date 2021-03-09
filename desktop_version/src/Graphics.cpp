@@ -133,10 +133,10 @@ void Graphics::Makebfont()
             bfont.push_back(temp);
 
             temp = GetSubSurface(grphx.im_bfont,i*8,j*8,8,8);
-			SDL_Surface* TempFlipped = FlipSurfaceVerticle(temp);
+			      SDL_Surface* TempFlipped = FlipSurfaceVerticle(temp);
 
             flipbfont.push_back(TempFlipped);
-			SDL_FreeSurface(temp);
+			      SDL_FreeSurface(temp);
 
         }
     }

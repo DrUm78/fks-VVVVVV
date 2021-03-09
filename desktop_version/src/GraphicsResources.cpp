@@ -59,24 +59,20 @@ SDL_Surface* LoadImage(const char *filename, bool noBlend = true, bool noAlpha =
 
 	if (loadedImage != NULL)
 	{
-		optimizedImage = SDL_ConvertSurfaceFormat(
-			loadedImage,
-			SDL_PIXELFORMAT_ABGR8888, // FIXME: Format? -flibit
-			0
-		);
-		SDL_FreeSurface( loadedImage );
+    optimizedImage = SDL_DisplayFormatAlpha(loadedImage);
+		SDL_FreeSurface(loadedImage);
 		free(data);
-		if (noBlend)
+		/*if (noBlend)
 		{
 			SDL_SetSurfaceBlendMode(optimizedImage, SDL_BLENDMODE_BLEND);
-		}
+		}*/
 		return optimizedImage;
 	}
 	else
 	{
 		fprintf(stderr,"Image not found: %s\n", filename);
-		SDL_assert(0 && "Image not found! See stderr.");
-		return NULL;
+    abort();
+    return NULL;
 	}
 }
 

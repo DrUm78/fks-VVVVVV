@@ -4,6 +4,9 @@
 #include <SDL.h>
 #include <vector>
 #include <string>
+#include <cassert>
+
+#define SDL_assert assert
 
 int ss_toi(std::string _s);
 
