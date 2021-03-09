@@ -239,6 +239,23 @@ int main(int argc, char *argv[])
 
         time = SDL_GetTicks();
 
+        if (game.gamestate == GAMEMODE)
+        {
+          bool found = false;
+          for (const auto& entity : obj.entities)
+          {
+            if (entity.rule == 0 && entity.active)
+            {
+              gameScreen.setPlayerPosition(entity.oldxp, entity.oldyp);
+              found = true;
+              break;
+            }
+          }
+
+          if (!found)
+            gameScreen.setPlayerPosition(-1, -1);
+        }
+
         // Update network per frame.
         NETWORK_update();
 

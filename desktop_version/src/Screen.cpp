@@ -100,19 +100,51 @@ void Screen::nextScaleMode()
 {
   if (mode == ScaleMode::ASPECT)
     mode = ScaleMode::STRETCHED;
+  else if (mode == ScaleMode::STRETCHED)
+  {
+    FillRect(hw_screen, 0x000);
+    mode = ScaleMode::CROPPED;
+  }
   else
+  {
+    FillRect(hw_screen, 0x000);
     mode = ScaleMode::ASPECT;
+  }
+}
+
+void Screen::setPlayerPosition(int x, int y)
+{
+  this->x = x;
+  this->y = y;
 }
 
 void Screen::FlipScreen()
 {
   if (mode == ScaleMode::ASPECT)
   {
-    FillRect(hw_screen, 0x000);
     scale_NN_AllowOutOfScreen(m_screen, hw_screen, 240, 180);
   }
   else if (mode == ScaleMode::STRETCHED)
     scale_NN_AllowOutOfScreen(m_screen, hw_screen, 240, 240);
+  else if (mode == ScaleMode::CROPPED)
+  {
+    if (x != -1)
+    {
+      int base; 
+
+      if (x < 120)
+        base = 0;
+      else if (x >= 200)
+        base = 80;
+      else
+        base = x - 120;
+
+      SDL_Rect src = { base, 0, 240, 240 };
+      BlitSurfaceStandard(m_screen, &src, hw_screen, NULL);
+    }
+    else
+      scale_NN_AllowOutOfScreen(m_screen, hw_screen, 240, 180);
+  }
 
   //BlitSurfaceStandard(m_screen, NULL, hw_screen, NULL);
   SDL_Flip(hw_screen);

@@ -14,6 +14,7 @@ class Screen
 private:
   void scale_NN_AllowOutOfScreen(SDL_Surface *src_surface, SDL_Surface *dst_surface, int new_w, int new_h);
 
+  int x = -1, y = -1;
   ScaleMode mode;
 
 public:
@@ -33,6 +34,7 @@ public:
 	void toggleLinearFilter();
 
   void nextScaleMode();
+  void setPlayerPosition(int x, int y);
 
 	bool isWindowed;
 	bool isFiltered;

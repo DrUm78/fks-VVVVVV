@@ -1565,86 +1565,27 @@ void gameinput(KeyPoll& key, Graphics& dwgfx, Game& game, mapclass& map,
         game.press_action = false;
         game.press_map = false;
     }
-/*
-    if (game.recording == 2 && !game.playbackfinished)
+
+    if(!script.running)
     {
-        //playback!
-        //record your input and add it to the record string
-        //Keys are:
-        //0 - nothing
-        //1 - left
-        //2 - right
-        //3 - left+right
-        //4 - flip
-        //5 - left+flip
-        //6 - right+flip
-        //7 - left+right+flip
-        //8 - Map/teleport
-        if (!game.recordinit)
+        if (key.isDown(KEYBOARD_LEFT) || key.isDown(KEYBOARD_a))
         {
-            //Init recording
-            game.recordinit = true;
-            game.combomode = false;
-            game.playmove = game.playback[game.playbackpos+1];
-            game.playcombo = game.playback[game.playbackpos];
+            game.press_left = true;
         }
-
-        if (game.playcombo <= 0)
+        if (key.isDown(KEYBOARD_RIGHT) || key.isDown(KEYBOARD_d))
         {
-            //move on to the next action
-            game.playbackpos += 2;
-            game.playmove = game.playback[game.playbackpos + 1];
-            game.playcombo = game.playback[game.playbackpos];
-            if (game.playcombo > 1) game.playcombo--;
+            game.press_right = true;
         }
-
-        if (game.playcombo >= 1)
+        if (key.isDown(KEYBOARD_z) || key.isDown(KEYBOARD_SPACE) || key.isDown(KEYBOARD_v)
+                || key.isDown(KEYBOARD_UP) || key.isDown(KEYBOARD_DOWN) || key.isDown(KEYBOARD_w) || key.isDown(KEYBOARD_s))
         {
-            game.playcombo--;
-            if (game.playmove == 1 || game.playmove == 3 || game.playmove == 5 || game.playmove == 7)
-            {
-                game.press_left = true;
-            }
-            if (game.playmove == 2 || game.playmove == 3 || game.playmove == 6 || game.playmove == 7)
-            {
-                game.press_right = true;
-            }
-            if (game.playmove == 4 || game.playmove == 5 || game.playmove == 6 || game.playmove == 7)
-            {
-                game.press_action = true;
-            }
-            if (game.playmove == 8)
-            {
-                game.press_map = true;
-                //game.playbackfinished = true;
-                //TODO WTF is trace
-                //trace("finished!");
-            }
-        }
-    }
-    else
-    { */
-        if(!script.running)
-        {
-            if (key.isDown(KEYBOARD_LEFT) || key.isDown(KEYBOARD_a))
-            {
-                game.press_left = true;
-            }
-            if (key.isDown(KEYBOARD_RIGHT) || key.isDown(KEYBOARD_d))
-            {
-                game.press_right = true;
-            }
-            if (key.isDown(KEYBOARD_z) || key.isDown(KEYBOARD_SPACE) || key.isDown(KEYBOARD_v)
-                    || key.isDown(KEYBOARD_UP) || key.isDown(KEYBOARD_DOWN) || key.isDown(KEYBOARD_w) || key.isDown(KEYBOARD_s))
-            {
-                game.press_action = true;
-            };
+            game.press_action = true;
+        };
 			if (key.isDown(KEYBOARD_ENTER) || key.isDown(SDLK_KP_ENTER) )
 			{
 				game.press_map = true;
 			}
-        }
-    //}
+    }
 
     if (game.advancetext)
     {
