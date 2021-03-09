@@ -52,7 +52,7 @@ void titleinput(KeyPoll& key, Graphics& dwgfx, mapclass& map, Game& game, entity
             game.jumpheld = true;
         }
 
-        if (key.isDown(27) && game.currentmenuname != "youwannaquit" && game.menustart)
+        if (key.isDown(KEYBOARD_ESCAPE) && game.currentmenuname != "youwannaquit" && game.menustart)
         {
             music.playef(11, 10);
             game.previousmenuname = game.currentmenuname;
@@ -1657,7 +1657,7 @@ void gameinput(KeyPoll& key, Graphics& dwgfx, Game& game, mapclass& map,
 
     //Returning to editor mode must always be possible
     if(map.custommode && !map.custommodeforreal){
-      if ((game.press_map || key.isDown(27)) && !game.mapheld){
+      if ((game.press_map || key.isDown(KEYBOARD_ESCAPE)) && !game.mapheld){
         game.mapheld = true;
         //Return to level editor
         if (game.activeactivity > -1 && game.press_map){
@@ -1698,7 +1698,7 @@ void gameinput(KeyPoll& key, Graphics& dwgfx, Game& game, mapclass& map,
                 }
                 */
                 /*
-                if (key.isDown(27)) {
+                if (key.isDown(KEYBOARD_ESCAPE)) {
                 game.state = 0;
                 dwgfx.textboxremove();
 
@@ -1829,7 +1829,7 @@ void gameinput(KeyPoll& key, Graphics& dwgfx, Game& game, mapclass& map,
                     }
                 }
 
-                if ((key.isDown(27)) && (!map.custommode || map.custommodeforreal))
+                if ((key.isDown(KEYBOARD_ESCAPE)) && (!map.custommode || map.custommodeforreal))
                 {
                     game.mapheld = true;
                     //Quit menu, same conditions as in game menu
@@ -1846,10 +1846,10 @@ void gameinput(KeyPoll& key, Graphics& dwgfx, Game& game, mapclass& map,
                     if (map.extrarow) dwgfx.menuoffset -= 10;
                 }
 
-                if (key.keymap[SDLK_r] && game.deathseq<=0)// && map.custommode) //Have fun glitchrunners!
+                /*if (key.keymap[SDLK_r] && game.deathseq<=0)// && map.custommode) //Have fun glitchrunners!
                 {
                 	game.deathseq = 30;
-                }
+                }*/
 
                 if (game.press_left)
                 {
@@ -1988,7 +1988,7 @@ void mapinput(KeyPoll& key, Graphics& dwgfx, Game& game, mapclass& map,
         if (game.menupage < 9)
         {
             if (key.isDown(KEYBOARD_ENTER)) game.press_map = true;
-            if (key.isDown(27))
+            if (key.isDown(KEYBOARD_ESCAPE))
             {
                 game.mapheld = true;
                 game.menupage = 10;
@@ -1996,7 +1996,7 @@ void mapinput(KeyPoll& key, Graphics& dwgfx, Game& game, mapclass& map,
         }
         else
         {
-            if (key.isDown(KEYBOARD_ENTER) || key.isDown(27)) game.press_map = true;
+            if (key.isDown(KEYBOARD_ENTER) || key.isDown(KEYBOARD_ESCAPE)) game.press_map = true;
         }
 
         //In the menu system, all keypresses are single taps rather than holds. Therefore this test has to be done for all presses
@@ -2004,7 +2004,7 @@ void mapinput(KeyPoll& key, Graphics& dwgfx, Game& game, mapclass& map,
         {
             game.jumpheld = false;
         }
-        if (!game.press_map && !key.isDown(27))
+        if (!game.press_map && !key.isDown(KEYBOARD_ESCAPE))
         {
             game.mapheld = false;
         }
@@ -2282,7 +2282,7 @@ void gamecompleteinput(KeyPoll& key, Graphics& dwgfx, Game& game, mapclass& map,
         game.press_action = true;
     }
     if (key.isDown(KEYBOARD_ENTER)) game.press_map = true;
-    //if (key.isDown(27)) { game.mapheld = true;  game.menupage = 10; }
+    //if (key.isDown(KEYBOARD_ESCAPE)) { game.mapheld = true;  game.menupage = 10; }
 
     if (!game.mapheld)
     {
@@ -2325,7 +2325,7 @@ void gamecompleteinput2(KeyPoll& key, Graphics& dwgfx, Game& game, mapclass& map
         game.press_action = true;
     }
     if (key.isDown(KEYBOARD_ENTER)) game.press_map = true;
-    //if (key.isDown(27)) { game.mapheld = true;  game.menupage = 10; }
+    //if (key.isDown(KEYBOARD_ESCAPE)) { game.mapheld = true;  game.menupage = 10; }
 
     if (!game.mapheld)
     {
