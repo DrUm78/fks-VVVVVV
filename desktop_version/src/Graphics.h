@@ -23,7 +23,7 @@ class map;
 class Graphics
 {
 public:
-	Graphics();
+	Graphics(const SDL_PixelFormat* format);
 	~Graphics();
 
 	GraphicsResources grphx;

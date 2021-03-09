@@ -4,7 +4,7 @@
 #include "Map.h"
 #include "Screen.h"
 
-Graphics::Graphics()
+Graphics::Graphics(const SDL_PixelFormat* format) : grphx(format)
 {
     flipmode = false;
     setRect(tiles_rect, 0,0,8,8);

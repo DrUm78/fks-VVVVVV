@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
     // Load Ini
 
 
-    Graphics graphics;
+    Graphics graphics(gameScreen.GetFormat());
 
 
 

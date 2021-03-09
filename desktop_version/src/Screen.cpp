@@ -91,7 +91,7 @@ void Screen::UpdateScreen(SDL_Surface* buffer, SDL_Rect* rect )
 
 const SDL_PixelFormat* Screen::GetFormat()
 {
-    return m_screen->format;
+    return hw_screen->format;
 }
 
 void Screen::FlipScreen()

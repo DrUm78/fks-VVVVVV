@@ -62,10 +62,10 @@ SDL_Surface* LoadImage(const char *filename, bool noBlend = true, bool noAlpha =
     optimizedImage = SDL_DisplayFormatAlpha(loadedImage);
 		SDL_FreeSurface(loadedImage);
 		free(data);
-		/*if (noBlend)
+		if (noBlend)
 		{
-			SDL_SetSurfaceBlendMode(optimizedImage, SDL_BLENDMODE_BLEND);
-		}*/
+      SDL_SetAlpha(optimizedImage, SDL_SRCALPHA, 0);
+		}
 		return optimizedImage;
 	}
 	else
@@ -76,7 +76,7 @@ SDL_Surface* LoadImage(const char *filename, bool noBlend = true, bool noAlpha =
 	}
 }
 
-GraphicsResources::GraphicsResources(void)
+GraphicsResources::GraphicsResources(const SDL_PixelFormat* format)
 {
 	im_tiles =		LoadImage("graphics/tiles.png");
 	im_tiles2 =		LoadImage("graphics/tiles2.png");

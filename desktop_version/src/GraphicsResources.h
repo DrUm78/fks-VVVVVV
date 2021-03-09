@@ -6,7 +6,7 @@
 class GraphicsResources
 {
 public:
-    GraphicsResources(void);
+    GraphicsResources(const SDL_PixelFormat* format);
     ~GraphicsResources(void);
 
     SDL_Surface* im_tiles;
