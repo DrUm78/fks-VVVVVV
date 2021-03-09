@@ -99,6 +99,11 @@ ADD_LIBRARY(tinyxml-static STATIC ${XML_SRC})
 ADD_LIBRARY(physfs-static STATIC ${PFS_SRC} ${PFSP_SRC})
 ADD_LIBRARY(lodepng-static STATIC ${PNG_SRC})
 
+
+set(OPTIMIZATIONS -O3 -flto -fomit-frame-pointer -fexpensive-optimizations -march=armv7-a -mtune=cortex-a7 -mfpu=neon -mfloat-abi=hard -ffast-math -funsafe-math-optimizations -mvectorize-with-neon-quad -ftree-vectorize)
+target_compile_options(vvvvvv PUBLIC "$<$<CONFIG:RELEASE>:${OPTIMIZATIONS}>")
+
+
 # Static Dependencies
 TARGET_LINK_LIBRARIES(vvvvvv physfs-static tinyxml-static lodepng-static)
 
