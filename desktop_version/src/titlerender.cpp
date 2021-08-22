@@ -49,7 +49,7 @@ void titlerender(Graphics& dwgfx, mapclass& map, Game& game, entityclass& obj, U
 				#endif
 
         dwgfx.Print(5, 175, "[ Press ACTION to Start ]", tr, tg, tb, true);
-        dwgfx.Print(5, 195, "ACTION = Space, Z, or V", int(tr*0.5f), int(tg*0.5f), int(tb*0.5f), true);
+        dwgfx.Print(5, 195, "ACTION = A, L or R", int(tr*0.5f), int(tg*0.5f), int(tb*0.5f), true);
 
         //dwgfx.Print(5, 215, "Press CTRL-F for Fullscreen", tr, tg, tb, true);
 

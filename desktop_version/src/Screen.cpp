@@ -100,7 +100,7 @@ void Screen::nextScaleMode()
 {
   const char* name = "STRETCHED";
   
-  if (mode == ScaleMode::ASPECT)
+  if (mode == ScaleMode::SCALED)
     mode = ScaleMode::STRETCHED;
   else if (mode == ScaleMode::STRETCHED)
   {
@@ -111,18 +111,18 @@ void Screen::nextScaleMode()
   else
   {
     FillRect(hw_screen, 0x000);
-    mode = ScaleMode::ASPECT;
-    name = "ASPECT";
+    mode = ScaleMode::SCALED;
+    name = "SCALED";
   }
 
 #if !_WIN32
-  const char* SHELL_CMD_NOTIF = "notif_set";
+  const char* SHELL_CMD_NOTIF_SET = "notif set";
   constexpr int NOTIF_SECONDS_DISP = 2;
 
   FILE *fp;
   char command[100];
   sprintf(command, "%s %d \"     DISPLAY MODE: %s\"",
-    SHELL_CMD_NOTIF, NOTIF_SECONDS_DISP, name);
+    SHELL_CMD_NOTIF_SET, NOTIF_SECONDS_DISP, name);
   fp = popen(command, "r");
   if (fp == NULL) {
     printf("Failed to run command %s\n", command);
@@ -138,7 +138,7 @@ void Screen::setPlayerPosition(int x, int y)
 
 void Screen::FlipScreen()
 {
-  if (mode == ScaleMode::ASPECT)
+  if (mode == ScaleMode::SCALED)
   {
     //scale_NN_AllowOutOfScreen(m_screen, hw_screen, 240, 180);
     downscale_320x240_to_240x180_bilinearish(m_screen, hw_screen);

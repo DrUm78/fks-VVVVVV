@@ -1,2 +1,10 @@
-desktop_version/build/**
+desktop_version/CMakeFiles/**
 *.opk
+*.o
+cmake_install.cmake
+CMakeCache.txt
+Makefile
+liblodepng-static.a
+libphysfs-static.a
+libtinyxml-static.a
+vvvvvv

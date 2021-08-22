@@ -1,11 +1,11 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 
-#include <SDL.h>
+#include <SDL/SDL.h>
 
 enum class ScaleMode
 {
-  CROPPED, ASPECT, STRETCHED
+  CROPPED, SCALED, STRETCHED
 };
 
 

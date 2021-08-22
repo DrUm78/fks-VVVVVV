@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <SDL.h>
+#include <SDL/SDL.h>
 #include <physfs.h>
 
 #if defined(_WIN32)

@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 #include <stdint.h>
-#include <SDL.h>
+#include <SDL/SDL.h>
 
 /* Steamworks interface versions */
 
