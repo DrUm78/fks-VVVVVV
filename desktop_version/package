@@ -1,0 +1,30 @@
+#!/bin/sh
+
+OPK_NAME=vvvvvv_v1.0.2_funkey-s.opk
+
+cmake ./
+make clean
+make -j16
+/opt/FunKey-sdk/bin/arm-funkey-linux-musleabihf-strip vvvvvv
+
+# Create vvvvvv.funkey-s.desktop
+cat > vvvvvv.funkey-s.desktop <<EOF
+[Desktop Entry]
+Name=VVVVVV
+Comment=2D puzzle platformer created by Terry Cavanagh
+Exec=vvvvvv
+Icon=vvvvvv
+Categories=games
+X-OD-Manual=README.md
+EOF
+
+# Create opk
+FLIST="vvvvvv"
+FLIST="${FLIST} vvvvvv.funkey-s.desktop"
+FLIST="${FLIST} vvvvvv.png"
+FLIST="${FLIST} ../README.md"
+
+rm -f ${OPK_NAME}
+mksquashfs ${FLIST} ${OPK_NAME} -all-root -no-xattrs -noappend -no-exports
+
+rm -f vvvvvv.funkey-s.desktop

@@ -1,4 +1,4 @@
-#include <SDL.h>
+#include <SDL/SDL.h>
 #include "SoundSystem.h"
 
 #include "UtilityClass.h"

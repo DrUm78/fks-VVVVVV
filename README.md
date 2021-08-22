@@ -1,6 +1,6 @@
 Info
 ----
-This is the FunKey-S port of VVVVVV. SDL has been downgraded to SDL1.2 so this version could be used to port the game to other platform which doesn't support SDL2.0.
+This is the FunKey S port of VVVVVV. SDL has been downgraded to SDL1.2 so this version could be used to port the game to other platform which doesn't support SDL2.0.
 
 License
 -------

@@ -5,7 +5,7 @@
 #include <vector>
 #include <map> // FIXME: I should feel very bad for using C++ -flibit
 
-#include "SDL.h"
+#include "SDL/SDL.h"
 
 class Screen;
 
@@ -17,7 +17,7 @@ enum
 	KEYBOARD_RIGHT = SDLK_r,
 	KEYBOARD_ENTER = SDLK_s,
 	KEYBOARD_SPACE = SDLK_a,
-  KEYBOARD_ESCAPE = SDLK_k,
+	KEYBOARD_ESCAPE = SDLK_q,
 
 	KEYBOARD_w = SDLK_UP,
 	KEYBOARD_s = SDLK_DOWN,

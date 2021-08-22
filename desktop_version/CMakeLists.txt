@@ -18,12 +18,10 @@ ADD_DEFINITIONS(-DPHYSFS_SUPPORTS_DEFAULT=0 -DPHYSFS_SUPPORTS_ZIP=1)
 # Executable Suffix
 IF(APPLE)
 	SET(CMAKE_EXECUTABLE_SUFFIX ".osx")
-ELSEIF(WIN32)
-	# Nothing!
 ELSEIF(CMAKE_SIZEOF_VOID_P MATCHES "8")
 	SET(CMAKE_EXECUTABLE_SUFFIX ".x86_64")
 ELSE()
-	SET(CMAKE_EXECUTABLE_SUFFIX ".x86")
+	# Nothing!
 ENDIF()
 
 # Include Directories
@@ -99,16 +97,14 @@ ADD_LIBRARY(tinyxml-static STATIC ${XML_SRC})
 ADD_LIBRARY(physfs-static STATIC ${PFS_SRC} ${PFSP_SRC})
 ADD_LIBRARY(lodepng-static STATIC ${PNG_SRC})
 
-
 set(OPTIMIZATIONS -O3 -flto -fomit-frame-pointer -fexpensive-optimizations -march=armv7-a -mtune=cortex-a7 -mfpu=neon -mfloat-abi=hard -ffast-math -funsafe-math-optimizations -mvectorize-with-neon-quad -ftree-vectorize)
 target_compile_options(vvvvvv PUBLIC "$<$<CONFIG:RELEASE>:${OPTIMIZATIONS}>")
-
 
 # Static Dependencies
 TARGET_LINK_LIBRARIES(vvvvvv physfs-static tinyxml-static lodepng-static)
 
-LINK_DIRECTORIES(/home/jack/Desktop/dev/FunKey-OS/SDK/output/host/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/lib)
-INCLUDE_DIRECTORIES(/home/jack/Desktop/dev/FunKey-OS/SDK/output/host/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL)
+LINK_DIRECTORIES(/opt/FunKey-sdk/arm-funkey-linux-musleabihf/sysroot/usr/lib)
+INCLUDE_DIRECTORIES(/opt/FunKey-sdk/arm-funkey-linux-musleabihf/sysroot/usr/include/SDL)
 ADD_DEFINITIONS(-D_GNU_SOURCE=1 -D_REENTRANT)
 
 target_link_libraries(vvvvvv SDL SDL_mixer SDL_sound pthread)
