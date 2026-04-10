@@ -116,7 +116,7 @@ bool binaryBlob::unPackBinary(const char* name)
 			break;
 		}
 
-		printf("%s unpacked\n", m_headers[i].name);
+		//printf("%s unpacked\n", m_headers[i].name);
 	}
 
 	return true;

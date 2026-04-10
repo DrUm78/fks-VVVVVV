@@ -52,7 +52,7 @@ void titleinput(KeyPoll& key, Graphics& dwgfx, mapclass& map, Game& game, entity
             game.jumpheld = true;
         }
 
-        if (key.isDown(27) && game.currentmenuname != "youwannaquit" && game.menustart)
+        if (key.isDown(KEYBOARD_ESCAPE) && game.currentmenuname != "youwannaquit" && game.menustart)
         {
             music.playef(11, 10);
             game.previousmenuname = game.currentmenuname;
@@ -1635,7 +1635,7 @@ void gameinput(KeyPoll& key, Graphics& dwgfx, Game& game, mapclass& map,
                 game.press_right = true;
             }
             if (key.isDown(KEYBOARD_z) || key.isDown(KEYBOARD_SPACE) || key.isDown(KEYBOARD_v)
-                    || key.isDown(KEYBOARD_UP) || key.isDown(KEYBOARD_DOWN) || key.isDown(KEYBOARD_w) || key.isDown(KEYBOARD_s))
+                    || key.isDown(KEYBOARD_w) || key.isDown(KEYBOARD_s))
             {
                 game.press_action = true;
             };
@@ -1757,7 +1757,7 @@ void gameinput(KeyPoll& key, Graphics& dwgfx, Game& game, mapclass& map,
                 }
                 */
                 /*
-                if (key.isDown(27)) {
+                if (key.isDown(KEYBOARD_ESCAPE)) {
                 game.state = 0;
                 dwgfx.textboxremove();
 
@@ -1888,7 +1888,7 @@ void gameinput(KeyPoll& key, Graphics& dwgfx, Game& game, mapclass& map,
                     }
                 }
 
-                if ((key.isDown(27)) && (!map.custommode || map.custommodeforreal))
+                if ((key.isDown(KEYBOARD_ESCAPE)) && (!map.custommode || map.custommodeforreal))
                 {
                     game.mapheld = true;
                     //Quit menu, same conditions as in game menu
@@ -2047,7 +2047,7 @@ void mapinput(KeyPoll& key, Graphics& dwgfx, Game& game, mapclass& map,
         if (game.menupage < 9)
         {
             if (key.isDown(KEYBOARD_ENTER)) game.press_map = true;
-            if (key.isDown(27))
+            if (key.isDown(KEYBOARD_ESCAPE))
             {
                 game.mapheld = true;
                 game.menupage = 10;
@@ -2341,7 +2341,7 @@ void gamecompleteinput(KeyPoll& key, Graphics& dwgfx, Game& game, mapclass& map,
         game.press_action = true;
     }
     if (key.isDown(KEYBOARD_ENTER)) game.press_map = true;
-    //if (key.isDown(27)) { game.mapheld = true;  game.menupage = 10; }
+    //if (key.isDown(KEYBOARD_ESCAPE)) { game.mapheld = true;  game.menupage = 10; }
 
     if (!game.mapheld)
     {
@@ -2384,7 +2384,7 @@ void gamecompleteinput2(KeyPoll& key, Graphics& dwgfx, Game& game, mapclass& map
         game.press_action = true;
     }
     if (key.isDown(KEYBOARD_ENTER)) game.press_map = true;
-    //if (key.isDown(27)) { game.mapheld = true;  game.menupage = 10; }
+    //if (key.isDown(KEYBOARD_ESCAPE)) { game.mapheld = true;  game.menupage = 10; }
 
     if (!game.mapheld)
     {

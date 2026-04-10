@@ -29,7 +29,7 @@ Screen::Screen()
     filterSubrect.w = 318;
     filterSubrect.h = 238;
 
-    hw_screen = SDL_SetVideoMode(240, 240, 32, SDL_DOUBLEBUF | SDL_HWSURFACE);
+    hw_screen = SDL_SetVideoMode(320, 240, 32, SDL_DOUBLEBUF | SDL_HWSURFACE);
 
 	  m_screen = SDL_CreateRGBSurface(
 		  0,

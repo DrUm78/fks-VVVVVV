@@ -27,6 +27,7 @@
 
 char saveDir[MAX_PATH];
 char levelDir[MAX_PATH];
+char musicDir[MAX_PATH];
 
 void PLATFORM_getOSDirectory(char* output);
 void PLATFORM_migrateSaveData(char* output);
@@ -53,7 +54,7 @@ void FILESYSTEM_init(char *argvZero)
 	strcpy(saveDir, output);
 	strcat(saveDir, "saves");
 	strcat(saveDir, PHYSFS_getDirSeparator());
-	mkdir(saveDir, 0777);
+	mkdirResult |= mkdir(saveDir, 0777);
 	printf("Save directory: %s\n", saveDir);
 
 	/* Create level directory */
@@ -62,6 +63,13 @@ void FILESYSTEM_init(char *argvZero)
 	strcat(levelDir, PHYSFS_getDirSeparator());
 	mkdirResult |= mkdir(levelDir, 0777);
 	printf("Level directory: %s\n", levelDir);
+
+	/* Create music directory */
+	strcpy(musicDir, output);
+	strcat(musicDir, "music");
+	strcat(musicDir, PHYSFS_getDirSeparator());
+	mkdirResult |= mkdirResult |= mkdir(musicDir, 0777);
+	printf("Music directory: %s\n", musicDir);
 
 	/* We didn't exist until now, migrate files! */
 	if (VNEEDS_MIGRATION)
@@ -74,12 +82,13 @@ void FILESYSTEM_init(char *argvZero)
 	strcpy(output, PHYSFS_getBaseDir());
 	strcat(output, "data.zip");
 #else
-	strcpy(output, "data.zip");
+	PLATFORM_getOSDirectory(output);
+	strcat(output, "data.zip");
 #endif
 	if (!PHYSFS_mount(output, NULL, 1))
 	{
-    printf("data.zip missing!\n");
-    abort();
+		printf("data.zip is missing! Place it in %s\n", output);
+		abort();
 	}
 }
 

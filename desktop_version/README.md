@@ -31,11 +31,11 @@ cd flibitBuild
 cmake ..
 ```
 
-To generate for RG350:
+To generate for GKD350H or GKD Pixel:
 ```
 mkdir flibitBuild
 cd flibitBuild
-CC=mipsel-gcw0-linux-uclibc-gcc CXX=mipsel-gcw0-linux-uclibc-g++ cmake .. -DSDL2_INCLUDE_DIRS=/opt/gcw0-toolchain/usr/mipsel-gcw0-linux-uclibc/sysroot/usr/include/SDL2/ -DSDL2_LIBRARIES="/opt/gcw0-toolchain/usr/mipsel-gcw0-linux-uclibc/sysroot/usr/lib/libSDL2.so;/opt/gcw0-toolchain/usr/mipsel-gcw0-linux-uclibc/sysroot/usr/lib/libSDL2_mixer.so"
+CC=mipsel-gcw0-linux-uclibc-gcc CXX=mipsel-gcw0-linux-uclibc-g++ cmake .. -DSDL_INCLUDE_DIRS=/opt/gcw0-toolchain/usr/mipsel-gcw0-linux-uclibc/sysroot/usr/include/SDL/ -DSDL_LIBRARIES="/opt/gcw0-toolchain/usr/mipsel-gcw0-linux-uclibc/sysroot/usr/lib/libSDL.so;/opt/gcw0-toolchain/usr/mipsel-gcw0-linux-uclibc/sysroot/usr/lib/libSDL_mixer.so"
 ```
 
 macOS may be fussy about the SDK version. How to fix this is up to the whims of

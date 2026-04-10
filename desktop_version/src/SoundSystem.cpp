@@ -8,7 +8,7 @@ MusicTrack::MusicTrack(const char* fileName)
 	m_isValid = true;
 	if(m_music == NULL)
 	{
-		fprintf(stderr, "Unable to load Ogg Music file: %s\n", Mix_GetError());;
+		fprintf(stderr, "Unable to load MP3 Music file: %s\n", Mix_GetError());;
 		m_isValid = false;
 	}
 }
@@ -63,6 +63,6 @@ void SoundSystem::playMusic(MusicTrack* music)
 	}
 	if(Mix_PlayMusic(music->m_music, 0) == -1)
 	{
-		fprintf(stderr, "Unable to play Ogg file: %s\n", Mix_GetError());
+		fprintf(stderr, "Unable to play MP3 file: %s\n", Mix_GetError());
 	}
 }

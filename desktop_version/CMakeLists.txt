@@ -22,8 +22,6 @@ ELSEIF(WIN32)
 	# Nothing!
 ELSEIF(CMAKE_SIZEOF_VOID_P MATCHES "8")
 	SET(CMAKE_EXECUTABLE_SUFFIX ".x86_64")
-ELSE()
-	SET(CMAKE_EXECUTABLE_SUFFIX ".x86")
 ENDIF()
 
 # Include Directories
@@ -101,9 +99,11 @@ ADD_LIBRARY(lodepng-static STATIC ${PNG_SRC})
 
 # Static Dependencies
 TARGET_LINK_LIBRARIES(vvvvvv physfs-static tinyxml-static lodepng-static)
+TARGET_LINK_LIBRARIES(vvvvvv SDL SDL_mixer SDL_sound pthread)
 
-LINK_DIRECTORIES(/home/jack/Desktop/dev/FunKey-OS/SDK/output/host/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/lib)
-INCLUDE_DIRECTORIES(/home/jack/Desktop/dev/FunKey-OS/SDK/output/host/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL)
+SET(OPTIMIZATIONS -march=mips32r2 -mtune=mips32r2 -Ofast -fdata-sections -ffunction-sections -mno-fp-exceptions -mno-check-zero-division -mframe-header-opt -fsingle-precision-constant -fno-common -mplt -mno-shared -fno-PIC -flto -fno-builtin -mno-memcpy -fsection-anchors -fdelete-dead-exceptions)
+TARGET_COMPILE_OPTIONS(vvvvvv PUBLIC "$<$<CONFIG:RELEASE>:${OPTIMIZATIONS}>")
+
+LINK_DIRECTORIES(/opt/gcw0-toolchain-gcc11.1.0/mipsel-gcw0-linux-uclibc/sysroot/usr/bin/../../usr/lib)
+INCLUDE_DIRECTORIES(/opt/gcw0-toolchain-gcc11.1.0/mipsel-gcw0-linux-uclibc/sysroot/usr/bin/../../usr/include/SDL)
 ADD_DEFINITIONS(-D_GNU_SOURCE=1 -D_REENTRANT)
-
-target_link_libraries(vvvvvv SDL SDL_mixer SDL_sound pthread)
