@@ -68,8 +68,7 @@ musicclass::musicclass()
 		"predestinedfatefinallevel.mp3"
 	};
 
-	// Load MP3 files from $HOME/.local/share/VVVVVV/music/
-	binaryBlob musicReadBlob;
+	/*binaryBlob musicReadBlob;
 	if (!musicReadBlob.unPackBinary("mmmmmm.vvv"))
 	{
 		mmmmmm = false;
@@ -80,7 +79,7 @@ musicclass::musicclass()
 	{
 		mmmmmm = true;
 		usingmmmmmm = true;
-	}
+	}*/
 
 	// Load the 16 MP3 tracks from the constructed path
 	for (int i = 0; i < 16; i++) {
